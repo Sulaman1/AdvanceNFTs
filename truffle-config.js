@@ -1,3 +1,4 @@
+require("dotenv").config();
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -18,7 +19,7 @@
  *
  */
 
- const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
@@ -44,42 +45,42 @@ module.exports = {
     // options below to some value.
     //
     development: {
-     host: "127.0.0.1",     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
-     network_id: "*",       // Any network (default: none)
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
     },
-    // '0xb8ed812a73ca25905a534c4afc5b0f5ba2b387727cf73e4700fe843dcb7971b6',
+
     kovan: {
       networkCheckTimeout: 30000,
       //timeoutBlocks: 200, 
-      provider: function(){
+      provider: function () {
         return new HDWalletProvider(
-          'actual turtle provide away bamboo dad arrow devote knee mind cradle betray',
-          'https://kovan.infura.io/v3/c5a0caa6b6bc4b9783e5ef0f055aa538'
+          process.env.MNEMONICS,
+          process.env.RINKEBY_URL
         )
       },
-      vrf_coordinator : '0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9',
-      link_token : '0xa36085F69e2889c224210F603D836748e7dC0088',
+      vrf_coordinator: '0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9',
+      link_token: '0xa36085F69e2889c224210F603D836748e7dC0088',
       keyhash: '0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4',
-     
+
       network_id: 42
-      },
+    },
 
-      rinkeby: {
-        networkCheckTimeout: 30000,
-        provider: function(){
-          return new HDWalletProvider(
-            'actual turtle provide away bamboo dad arrow devote knee mind cradle betray',
-            'https://rinkeby.infura.io/v3/c5a0caa6b6bc4b9783e5ef0f055aa538'
-          )
-        },
-        vrf_coordinator : '0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B',
-        link_token : '0x01be23585060835e02b77ef475b0cc51aa1e0709',
-        keyhash : '0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311',
-
-        network_id: 4,
-        //skipDryRun: true,
+    rinkeby: {
+      networkCheckTimeout: 30000,
+      provider: function () {
+        return new HDWalletProvider(
+          process.env.MNEMONICS,
+          process.env.RINKEBY_URL
+        )
       },
+      vrf_coordinator: '0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B',
+      link_token: '0x01be23585060835e02b77ef475b0cc51aa1e0709',
+      keyhash: '0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311',
+
+      network_id: 4,
+      //skipDryRun: true,
+    },
 
     // Another network with more advanced options...
     // advanced: {
